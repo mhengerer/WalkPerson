@@ -19,6 +19,8 @@
   
     <div>class = container
 
+    <script src="./spotify-js/spotify-auth.js"></script>
+
 <form>
   <label for="destination">Destination:</label><br>
   <input type="text" id="destination" name="destination"><br>
@@ -27,6 +29,8 @@
 </form>
     </div>
     
+    <button onclick="spotifyAuth()">Authenticate Spotify</button>
+    <button onclick="getAccessTokenFromUrl()">Return access token</button>
 
-  </body>
+</body>
 
