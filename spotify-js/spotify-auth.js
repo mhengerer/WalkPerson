@@ -1,6 +1,6 @@
 function spotifyAuth() {
     var client_id = '5ecfa1d90ccc4d07be652c727956201c';
-    var redirect_uri = 'http://127.0.0.1:5500/';
+    var redirect_uri = 'https://mhengerer.github.io/WalkPerson/';
 
     var scope = 'user-read-private user-read-email';
 
