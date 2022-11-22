@@ -1,7 +1,8 @@
 //Global variables to store user IDs
-var authToken = ''; 
-var username = '';
+var authToken = 'BQAh2hhXV-SjzZ58sebizDcNhOJ5-WBghU4aL9LrWnRTgdX-yAyfy4WPDllnytvXeX5LQn7epGaf1Jt3mAGif-rqnXbMf6LdeUiiJDiPnjUmyO7sD7PyaLhOaUnfUZn19mpMLTrCSF-83N9XFwLAKiEowbyBHHlvzymXE0ude4M2vtNCs93g9JVN7ggvTd1cKRWczWuhIU2jwsNc9op1sp7Ki4SJyl_WVvPkEHA9VVueJ_UQvaVibpmmjcM'; 
+var username;
 var name = '';
+var feedback = null; 
 
 //Creates Spotify authentication link, redirects there, and sends the user back
 function spotifyAuth() {
@@ -11,7 +12,7 @@ function spotifyAuth() {
     var redirect_uri = 'http://127.0.0.1:5500/';
 
     //Permissions
-    var scope = 'user-read-private user-read-email';
+    var scope = 'user-read-private user-read-email playlist-modify-public playlist-modify-private';
 
     //Builds authentication URL
     var url = 'https://accounts.spotify.com/authorize';
@@ -20,7 +21,7 @@ function spotifyAuth() {
     url += '&scope=' + encodeURIComponent(scope);
     url += '&redirect_uri=' + encodeURIComponent(redirect_uri);
     console.log(url);
-    // window.location.replace(url);
+    window.location.replace(url);
 }
 
 // Gets full hash info from URL and splits out the access token
@@ -31,31 +32,54 @@ function getAccessTokenFromUrl() {
     console.log(hash2);
 }
 
+
 // Use as a model for creating a playlist
-// Figure out what callback parameter
-function createPlaylist(username, name, callback) {
-	console.log('createPlaylist', username, name);
+function createPlaylist() {
+	console.log('createPlaylist', username);
     // POST URL
 	var url = 'https://api.spotify.com/v1/users/' + username +
 		'/playlists';
-	$.ajax(url, {
-		method: 'POST',
-		data: JSON.stringify({
-			'name': name,
-			'public': false
-		}),
-		dataType: 'json',
-		headers: {
-			'Authorization': 'Bearer ' + g_access_token,
-			'Content-Type': 'application/json'
-		},
-		success: function(r) {
-			console.log('create playlist response', r);
-			callback(r.id);
-		},
-		error: function(r) {
-			callback(null);
-		}
-	});
+    fetch(url, {
+        method: 'POST',
+        body: JSON.stringify({
+            'name':'WalkPerson Playlist',
+            'description':'Test',
+            'public':false 
+        }),
+        headers: {
+            'Accept':'application/json',
+            'Content-Type':'application/json',
+            'Authorization': 'Bearer ' + authToken
+        }
+    }).then((response) => response.json())
+    .then((data) => console.log(data));
 }
 
+function getUsername() {
+	console.log('getUsername');
+	var url = 'https://api.spotify.com/v1/me';
+	fetch(url, {
+        method: 'GET',
+        headers: {
+            'Authorization': 'Bearer ' + authToken
+        }
+    }).then(function (response) {
+        if (response.ok) {
+            console.log(response);
+            response.json().then(function (data) {
+              console.log(data);
+              setUsername(data.id);
+            });
+          } else {
+            //alert('Error: ' + response.statusText);
+          }
+        })
+        .catch(function (error) {
+          alert('Unable to connect to GitHub');
+    });
+}
+
+function setUsername(dataId) {
+    username = dataId;
+    console.log(username);
+}
