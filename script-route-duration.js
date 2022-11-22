@@ -77,13 +77,13 @@ x.getCurrentPosition(success, failure);
 
 function success(position) {
 
-    var userLat = position.coords.latitiude
+    var userLat = position.coords.latitiude //keep - finds user lat
 
-    var userLong = position.coords.longititude
+    var userLong = position.coords.longititude //keep - finds user long
 
-    var userCoords = new google.maps.LatLong(userLat,userLong);
+    var userCoords = new google.maps.LatLong(userLat,userLong); //use for origin in route duration - merges lat and long into usable data for user origin
 
-    var mapOptions = {
+    var mapOptions = { //
 
         zoom: 10,
         center: userCoords, 
