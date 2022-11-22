@@ -40,16 +40,18 @@
     </form>
   </header>
 
-  <body>
-    <div class="container">
-      <div class="row">
-        <form>
-          <label for="destination">Destination:</label><br />
-          <input type="text" id="destination" name="destination" /><br />
-          <label for="dropdown">Dropdown:</label><br />
-          <input type="text" id="dropdown" name="dropdown" />
-        </form>
-      </div>
+    <script src="./spotify-js/spotify-auth.js"></script>
+
+<form>
+  <label for="destination">Destination:</label><br>
+  <input type="text" id="destination" name="destination"><br>
+  <label for="dropdown">Dropdown:</label><br>
+  <input type="text" id="dropdown" name="dropdown">
+</form>
     </div>
-  </body>
-</html>
+    
+    <button onclick="spotifyAuth()">Authenticate Spotify</button>
+    <button onclick="getAccessTokenFromUrl()">Return access token</button>
+
+</body>
+
