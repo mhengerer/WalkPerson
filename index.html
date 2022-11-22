@@ -2,22 +2,43 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Fetch Demo</title>
-    <link rel="stylesheet" href="./assets/css/style.css" />
-  </head>
-<header>
-  
-  <div>container
+    <!-- link for chosen font NEEDED -->
 
-<div>WalkPerson</div>
-<div>img.logo</div>
-  </div>
-</header>
-  
-<body> 
-  
-    <div>class = container
+    <!-- links for Skeleton Framework CSS files -->
+    <link rel="stylesheet" href="./assets/css/normalize.css" />
+    <link rel="stylesheet" href="./assets/css/skeleton.css" />
+  </head>
+  <header>
+    <form>
+      <div>
+        <label>Starting Location:</label>
+        <input
+          class="u-full-width"
+          type="text"
+          placeholder="Where are you now?"
+        />
+      </div>
+      <div>
+        <label>Ending Location:</label>
+        <input
+          class="u-full-width"
+          type="text"
+          placeholder="Where are you going?"
+        />
+      </div>
+      <div>
+        <label>Mood:</label>
+        <select>
+          <option value="1">Upbeat</option>
+          <option value="2">Relaxed</option>
+          <option value="3">Hardcore</option>
+        </select>
+      </div>
+      <button class="u-full-width button-primary">Submit</button>
+    </form>
+  </header>
 
     <script src="./spotify-js/spotify-auth.js"></script>
 
