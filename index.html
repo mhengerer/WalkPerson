@@ -2,31 +2,54 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Fetch Demo</title>
-    <link rel="stylesheet" href="./assets/css/style.css" />
+    <!-- link for chosen font NEEDED -->
+
+    <!-- links for Skeleton Framework CSS files -->
+    <link rel="stylesheet" href="./assets/css/normalize.css" />
+    <link rel="stylesheet" href="./assets/css/skeleton.css" />
   </head>
-<header>
-  
-  <div>container
+  <header>
+    <form>
+      <div>
+        <label>Starting Location:</label>
+        <input
+          class="u-full-width"
+          type="text"
+          placeholder="Where are you now?"
+        />
+      </div>
+      <div>
+        <label>Ending Location:</label>
+        <input
+          class="u-full-width"
+          type="text"
+          placeholder="Where are you going?"
+        />
+      </div>
+      <div>
+        <label>Mood:</label>
+        <select>
+          <option value="1">Upbeat</option>
+          <option value="2">Relaxed</option>
+          <option value="3">Hardcore</option>
+        </select>
+      </div>
+      <button class="u-full-width button-primary">Submit</button>
+    </form>
+  </header>
 
-<div>WalkPerson</div>
-<div>img.logo</div>
-  </div>
-</header>
-  
-<body> 
-  
-    <div>class = container
-
-<form>
-  <label for="destination">Destination:</label><br>
-  <input type="text" id="destination" name="destination"><br>
-  <label for="dropdown">Dropdown:</label><br>
-  <input type="text" id="dropdown" name="dropdown">
-</form>
+  <body>
+    <div class="container">
+      <div class="row">
+        <form>
+          <label for="destination">Destination:</label><br />
+          <input type="text" id="destination" name="destination" /><br />
+          <label for="dropdown">Dropdown:</label><br />
+          <input type="text" id="dropdown" name="dropdown" />
+        </form>
+      </div>
     </div>
-    
-
   </body>
-
+</html>
