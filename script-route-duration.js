@@ -4,29 +4,7 @@ var apiKey = "AIzaSyDjEs-V1HGJ2sUwaWta6FhTRjTmAyoNxd4";
 
 var destination = 
 
-//code to locate user 
-//pick apart, indicate what does what, decide what methods fit project needs
-/*var map;
-function initMap() {
 
-    /* Access of single map object instance
-    var mapContainer = document
-        .getElementById("mapDivId");
-
-    var coordinates = new 
-        google.maps.LatLng(17.457427, 78.284296);
-          
-    var defaultOptions = {
-        center: coordinates,
-
-        /* Setting the initial resolution 
-        zoom: 4
-    }
-
-    map = new google.maps.Map(
-            mapContainer, defaultOptions);
-} 
-// end initMap() function */
 
 function getLocation() {
     document.getElementById(
@@ -70,39 +48,47 @@ function getLocation() {
 //--------------------usable data for locating user
 
 // tracks user 
-
 x = navigator.geolocation;
+x.getCurrentPosition(getUserLocation);
 
-x.getCurrentPosition(success, failure);
+var userLat = position.coords.latitiude; //keep - finds user lat
+var userLong = position.coords.longitude; //keep - finds user long
+var userLocation = [userLat, userLong];
 
-function success(position) {
 
-    var userLat = position.coords.latitiude //keep - finds user lat
+ document.getElementById("button").addEventListener("click", routeDurationCalc); //event listener for when button is pressed to find user 
 
-    var userLong = position.coords.longititude //keep - finds user long
+function routeDurationCalc () {
 
-    var userCoords = new google.maps.LatLong(userLat,userLong); //use for origin in route duration - merges lat and long into usable data for user origin
+    var routeData = {  //use for origin in route duration - merges lat and long into usable data for user origin
 
-    var mapOptions = { //
-
-        zoom: 10,
-        center: userCoords, 
-        mapTypeId: google.maps.mapTypeId.ROADMAP
-
+        origin: userLocation,
+        destination: document.getElementById("dest-input").value,
+        travelMode: google.maps.TravelMode.DRIVING, 
+        unitSystem: google.maps.UnitSystem.IMPERIAL
+    
     }
 
-    var map = new google.maps.Map(document.getElementById('map'),mapOptions)
+    directionsService.route(routeData, (result, status) => { 
+            if (status == google.maps.DirectionStatus.Ok) { //find the distance and route diration
 
-    var marker = new google.maps.Marker( {
-        
-        map: map,
-        position: coords
+                const duration = document.querySelector("#duration");
+                duration.innerHTML = "Your trip is " + result.routes[0].legs[0].distance.text + "long and will take " + result.routes[0].legs[0].duration.text + "!";
 
-    });
+            }
+
+    })
 
 }
 
-var userCoords = new google.maps.LatLong(userLat,userLong);
+//event listener for when button is pressed to find user 
+
+
+
+var userLocation = [userLat + userLong]; //use for origin in route duration - merges lat and long into usable data for user origin
+
+
+
 
 //route duration 
 
