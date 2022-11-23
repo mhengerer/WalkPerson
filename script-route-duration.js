@@ -108,15 +108,5 @@ var userCoords = new google.maps.LatLong(userLat,userLong);
 
 //par - origin and dest 
 
-methods: {
 
-    submitButtonClick () {
-        const routeURL = 'https://maps.googleapis.com/maps/api/distancematrix/json?origins=${'
-
-
-    }
-
-
-
-}
 
