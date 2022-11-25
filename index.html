@@ -1,49 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Fetch Demo</title>
-    <!-- link for chosen font NEEDED -->
 
-    <!-- links for Skeleton Framework CSS files -->
-    <link rel="stylesheet" href="./assets/css/normalize.css" />
-    <link rel="stylesheet" href="./assets/css/skeleton.css" />
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Fetch Demo</title>
+  <!-- link for chosen font NEEDED -->
+
+  <!-- links for Skeleton Framework CSS files -->
+  <link rel="stylesheet" href="./assets/css/normalize.css" />
+  <link rel="stylesheet" href="./assets/css/skeleton.css" />
+</head>
+
+<body>
   <header>
-    <form>
-      <div>
-        <label>Starting Location:</label>
-        <input
-          class="u-full-width"
-          type="text"
-          placeholder="Where are you now?"
-        />
+    <div class="row hero">
+      <div class="one-half column left">
+        <h1>Walk-Person</h1>
+        <h4>Create a playlist for your next walk</h4>
       </div>
-      <div>
-        <label>Ending Location:</label>
-        <input
-          class="u-full-width"
-          type="text"
-          placeholder="Where are you going?"
-        />
-        <div id="map" style="width:700px; height: 500px;"></div>
-
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjEs-V1HGJ2sUwaWta6FhTRjTmAyoNxd4"></script>
-  
-       <script>
-           var map_param = { center: { lat: 35.3071, lng: -80.7352 }, zoom: 12 };
-           var map = new google.maps.Map(document.getElementById('map'), map_param);
-           var dropPin1 = { position: { lat: 35.3071, lng: -80.7352 }, map: map };
-          
-           var marker = new google.maps.Marker(dropPin1);
-         
-        </script>
-  
-  
     </div>
+  </header>
+  <form>
+    <div class="row">
+      <div class="four columns">
+        <label>Starting Location:</label>
+        <input class="u-full-width" type="text" placeholder="Where are you now?" />
       </div>
-      <div>
+      <div class="four columns">
+        <label>Ending Location:</label>
+        <input class="u-full-width" type="text" placeholder="Where are you going?" />
+      </div>
+      <div class="four columns">
         <label>Mood:</label>
         <select>
           <option value="1">Upbeat</option>
@@ -51,22 +39,37 @@
           <option value="3">Hardcore</option>
         </select>
       </div>
-      <button class="u-full-width button-primary">Submit</button>
-    </form>
-  </header>
-
-    <script src="./spotify-js/spotify-auth.js"></script>
-
-<form>
-  <label for="destination">Destination:</label><br>
-  <input type="text" id="destination" name="destination"><br>
-  <label for="dropdown">Dropdown:</label><br>
-  <input type="text" id="dropdown" name="dropdown">
-</form>
     </div>
+    <button class="u-full-width button-primary">Submit</button>
+    <div id="map" style="width:700px; height: 500px;"></div>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjEs-V1HGJ2sUwaWta6FhTRjTmAyoNxd4"></script>
+
+    <script>
+      var map_param = { center: { lat: 35.3071, lng: -80.7352 }, zoom: 12 };
+      var map = new google.maps.Map(document.getElementById('map'), map_param);
+      var dropPin1 = { position: { lat: 35.3071, lng: -80.7352 }, map: map };
+
+      var marker = new google.maps.Marker(dropPin1);
+
+    </script>
+
     
-    <button onclick="spotifyAuth()">Authenticate Spotify</button>
-    <button onclick="getAccessTokenFromUrl()">Return access token</button>
+   
+  </form>
+
+
+  <script src="./spotify-js/spotify-auth.js"></script>
+
+  <form>
+    <label for="destination">Destination:</label><br>
+    <input type="text" id="destination" name="destination"><br>
+    <label for="dropdown">Dropdown:</label><br>
+    <input type="text" id="dropdown" name="dropdown">
+  </form>
+  </div>
+
+  <button onclick="spotifyAuth()">Authenticate Spotify</button>
+  <button onclick="getAccessTokenFromUrl()">Return access token</button>
 
 </body>
-
