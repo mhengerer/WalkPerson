@@ -37,6 +37,7 @@
         <input
           class="u-full-width"
           type="text"
+          id = "dest-input"
           placeholder="Where are you going?"
         />
         <div id="map" style="width:700px; height: 500px;"></div>
@@ -63,7 +64,7 @@
           <option value="3">Hardcore</option>
         </select>
       </div>
-      <button class="u-full-width button-primary">Submit</button>
+      <button id="submitButton" class="u-full-width button-primary">Submit</button>
     </form>
   </header>
 
@@ -82,12 +83,13 @@
 
 </body>
 
-  <script src=
-  "https://maps.googleapis.com/maps/api/js?key=<?php echo API_KEY; ?>&callback=initMap"
-          async defer>
-      </script>
+<script src="./script-route-duration.js"> </script>
 
-<script src=
-"https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyDjEs-V1HGJ2sUwaWta6FhTRjTmAyoNxd4"></script>
+<script src = "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyDjEs-V1HGJ2sUwaWta6FhTRjTmAyoNxd4" ></script>
+
+
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjEs-V1HGJ2sUwaWta6FhTRjTmAyoNxd4&callback=initMap"></script>
+
+<script src="https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyDjEs-V1HGJ2sUwaWta6FhTRjTmAyoNxd4"></script>
     
       </html>
