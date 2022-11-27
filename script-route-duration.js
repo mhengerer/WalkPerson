@@ -1,14 +1,22 @@
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjEs-V1HGJ2sUwaWta6FhTRjTmAyoNxd4&callback=initMap"></script>
 
 var apiKey = "AIzaSyDjEs-V1HGJ2sUwaWta6FhTRjTmAyoNxd4";
 
 x = navigator.geolocation;
-x.getCurrentPosition();
+x.getCurrentPosition (success, failure);
+
+
+function success (position) {
 
 var userLat = position.coords.latitiude; //keep - finds user lat
 var userLong = position.coords.longitude; //keep - finds user long
-var userLocation = [userLat, userLong]; //use for origin in route duration - merges lat and long into usable data for user origin
+var userLocation = new google.maps.LatLng(userLat,userLong); //use for origin in route duration - merges lat and long into usable data for user origin
+
+}
+
+function failure () {}
+
 var userDestination = document.getElementById("dest-input").value;
+var userLocation = new google.maps.LatLng(userLat,userLong); 
 
 
  document.getElementById("submitButton").addEventListener("click", initMap); //event listener for when button is pressed to find user 
@@ -29,23 +37,32 @@ function initMap () {
 
                 const duration = document.querySelector("#duration");
                 duration.innerHTML = "Your trip is " + result.routes[0].legs[0].distance.text + "long and will take " + result.routes[0].legs[0].duration.text + "!";
-            }
+           
+            directionsDisplay.setDirections(result);
+        } else{
+           directionsDisplay.setDirections({routes:[]});
+   
+       }
+   })
 
-
-
-
-        }) 
 }
 
 
 function myMap() {
 var mapProp= {
-  center:new google.maps.LatLng(userLocation, userDestination),
+  center: userLocation,
   zoom:5,
   mapTypeId: google.maps.MapTypeId.ROADMAP
 };
-var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
 
+//let latLngArray = [];
+
+//for (let i = 0; i < array.length; i++) {
+  //const gData = new google.maps.LatLng(array[i][0], array[i][1]);
+  //latLngArray.push(gData);
+//}
+
+var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
 
 renderMap = () => {
     loadScript("https://maps.googleapis.com/maps/api/js?key=AIzaSyDjEs-V1HGJ2sUwaWta6FhTRjTmAyoNxd4Y&callback=initMap");
@@ -68,15 +85,6 @@ renderMap = () => {
  // call the directions to the map 
  directionsDisplay.setMap(Map);
  
-
-var mapsetting = {
-
-    center: myLatLng,
-    zoom: 12,
-    mapTypeId: google.maps.MapTypeId.ROADMAP
-
-};
-
 
 
 
