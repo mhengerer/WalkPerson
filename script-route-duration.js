@@ -1,4 +1,3 @@
-
 var apiKey = "AIzaSyDjEs-V1HGJ2sUwaWta6FhTRjTmAyoNxd4";
 
 x = navigator.geolocation;
@@ -8,18 +7,15 @@ var global_userLat;
 var global_userLong;
 var origMap;
 
-function success (position) {
-console.log("success")
-
 var userLat = position.coords.latitude; //keep - finds user lat
 var userLong = position.coords.longitude; //keep - finds user 
-console.log(userLat)
-console.log(userLong)
+console.log(userLat);
+console.log(userLong);
 
 global_userLat = userLat;
 global_userLong = userLong;
 var userLocation = [userLat,userLong]; //use for origin in route duration - merges lat and long into usable data for user origin
-console.log(userLocation)
+console.log(userLocation);
 
 var mapAttr = {
     zoom: 12, 
@@ -30,6 +26,8 @@ var mapAttr = {
 origMap = new google.maps.Map(document.getElementById("origMap"), mapAttr);
 window.initMap = this.initMap;
 
+document.getElementById("submitButton").addEventListener("click", routeDuration); //event listener for when button is pressed to find user 
+
 return;
 
 var origMap = new google.maps.Map(document.getElementById("origMap"), mapAttr);
@@ -37,41 +35,37 @@ var userMarker = new google.maps.Marker({
     map: origMap, 
     position: userLocation
 });
-}
 
-function failure () {
+function failure() {
     console.log("failure")
 }
 
-var directionsService 
-
-function initMap () {
-    console.log('test')
-    directionsService = new google.maps.DirectionsService()
+function success (position) {
+    console.log("success");
 }
 
+var directionsService;
 
- document.getElementById("submitButton").addEventListener("click", routeDuration); //event listener for when button is pressed to find user 
+function initMap() {
+    console.log('test');
+    directionsService = new google.maps.DirectionsService()
+}
+//disable refresh 
 
- //disable refresh 
-
-function routeDuration () {
-
-console.log("enter destination and finding RD")
+function routeDuration() {
+    console.log("enter destination and finding RD");
 
     var userDestination = document.getElementById("dest-input").value;
-    console.log(userDestination)
+    console.log(userDestination);
 
     var routeData = {  
-
         origin: {lat: global_userLat, lng: global_userLong},
         destination: userDestination,
         travelMode: google.maps.TravelMode.DRIVING, 
         unitSystem: google.maps.UnitSystem.IMPERIAL
-    
     }
-    
-return;
+
+    return;
     directionsService.route(routeData, (result, status) => { 
             if (status == origMap.maps.DirectionStatus.Ok) { //find the distance and route diration
 
@@ -84,11 +78,9 @@ return;
    
        }
    })
-
 }
 
 //route duration in miliseconds and pushed to local storage
-
 
 /*
 function myMap() {
@@ -106,13 +98,6 @@ var mapProp= {
   //latLngArray.push(gData);
 //}
 
-
-
-
-
-
-
-
  // map should already be linked through HTML
 
  // insert direction service object use root method to get result 
@@ -123,7 +108,3 @@ var mapProp= {
 
  // call the directions to the map 
  //directionsDisplay.setMap(Map);
- 
-
-
-
