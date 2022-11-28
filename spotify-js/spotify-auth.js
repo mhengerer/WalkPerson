@@ -209,3 +209,7 @@ function waitForPlaylistId() {
         setTimeout(waitForPlaylistId, 3000);
     }
 }
+
+$("#submit").on("click", function(event) {
+    setInterval(waitForUsername, 3000)
+})
