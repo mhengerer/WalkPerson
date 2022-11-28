@@ -14,7 +14,7 @@
     <form>
       <div>
         <label>Starting Location:</label>
-        <input
+        <input id="start"
           class="u-full-width"
           type="text"
           placeholder="Where are you now?"
@@ -22,7 +22,7 @@
       </div>
       <div>
         <label>Ending Location:</label>
-        <input
+        <input id="end"
           class="u-full-width"
           type="text"
           placeholder="Where are you going?"
@@ -30,7 +30,7 @@
         <div id="map" style="width:700px; height: 500px;"></div>
 
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjEs-V1HGJ2sUwaWta6FhTRjTmAyoNxd4"></script>
-  
+        <script src="https://maps.googleapis.com/maps/api/directions/json?origin=Disneyland&destination=Universal+Studios+Hollywood&key=AIzaSyDjEs-V1HGJ2sUwaWta6FhTRjTmAyoNxd4"></script>
        <script>
            var map_param = { center: { lat: 35.3071, lng: -80.7352 }, zoom: 12 };
            var map = new google.maps.Map(document.getElementById('map'), map_param);
