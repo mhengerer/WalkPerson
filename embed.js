@@ -1,13 +1,13 @@
 window.onSpotifyIframeApiReady = (IFrameAPI) => {
     let element = document.getElementById('embed-iframe');
     let options = {
-        uri: 'spotify:playlist:37i9dQZF1DX0XUsuxWHRQd'
+        uri: 'spotify:playlist:0c6xIDDpzE81m2q797ordA'
       };
     let callback = (EmbedController) => {};
     IFrameAPI.createController(element, options, callback);
   };
 
-  var spotifyUri = localStorage.getItem('spotify_uri') ? '';
+  var spotifyUri = localStorage.getItem('spotify_uri') ? '0c6xIDDpzE81m2q797ordA':
   localStorage.getItem('spotify_uri'); 
   
 
