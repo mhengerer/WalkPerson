@@ -3,9 +3,11 @@ var authToken = getAccessTokenFromUrl();
 var username;
 getUsername();
 var playlistId;
-var tracks = getTracks();
+var tracks;
 
-setTimeout(waitForUsername, 3000);
+//For integration with the embed and Google Maps
+var playlistURI;
+var playlistLength = 900000;
 
 // Creates Spotify authentication link, redirects there, and sends the user back
 function spotifyAuth() {
@@ -69,7 +71,7 @@ function setUsername(dataId) {
 function getTracks() {
     var url = 'https://api.spotify.com/v1/recommendations?';
     //Search parameters for getting recommendations from Spotify
-    const LIMIT = 20; // # of songs to recommend
+    const LIMIT = 30; // # of songs to recommend
     const MARKET = 'US'; // Country to select songs from
     const SEED_ARTISTS = '4NHQUGzhtTLFvgF5SZesLK'; // Artist seed
     const SEED_GENRES = encodeURIComponent('metal, pop, dubstep'); //Genre seed
@@ -103,15 +105,19 @@ function getTracks() {
 
 // Helper function to set playlistId to global variable for use in other functions
 function setTracks(data) {
+    timeIndex = 0;
+    console.log(data);
     var songIdArray = [];
     for (var i = 0; i < data.tracks.length; i++) {
-        trackId = data.tracks[i].uri;
+        var trackId = data.tracks[i].uri;
+        timeIndex += data.tracks[i].duration_ms; 
         songIdArray.push(trackId);
+        if(timeIndex >= playlistLength)
+            break; 
     }
     console.log(songIdArray);
     tracks = songIdArray;
 }
-
 
 // Creates a blank playlist under the authorized user account 
 function createPlaylist(username) {
@@ -138,9 +144,9 @@ function createPlaylist(username) {
 // Helper function to set playlistId to global variable for use in other functions
 function setPlaylistId(dataId) {
     playlistId = dataId;
+    playlistURI = "spotify:playlist:" + dataId; 
     console.log(playlistId);
 }
-
 
 // Add tracks to a generated playlist
 // TODO: Logic on syncing # of tracks added with walk length
@@ -184,6 +190,7 @@ function getGenreList() {
 
 function waitForUsername() {
     if (username) {
+        tracks = getTracks();
         createPlaylist(username);
         console.log("Wait for Username Playlist ID: " + playlistId);
         waitForPlaylistId(); 
@@ -198,6 +205,7 @@ function waitForPlaylistId() {
         console.log("Playlist ID: " + playlistId); 
         console.log("Tracks: " + tracks);
         addTracks(username, playlistId, tracks);
+        localStorage.setItem('spotify_uri', playlistURI);
     } else {
         setTimeout(waitForPlaylistId, 3000);
     }
