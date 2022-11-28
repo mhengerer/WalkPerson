@@ -65,8 +65,7 @@ function setUsername(dataId) {
     console.log(username);
 }
 
-// Returns a list of recommendations based on the search parameters in the URL
-// TODO: Link to addTracks() to fill playlist with recommended tracks
+// Returns a list of recommendations based on the search parameters in the URL\
 function getTracks() {
     var genre = $('.genre-dropdown').val();
 
@@ -150,7 +149,7 @@ function setPlaylistId(dataId) {
 }
 
 // Add tracks to a generated playlist
-// TODO: Logic on syncing # of tracks added with walk length
+// TODO: Retrieve walk duration from localStorage
 function addTracks(username, playlistId, tracks) {
     var url = 'https://api.spotify.com/v1/users/' + username +
         '/playlists/' + playlistId + '/tracks';
@@ -213,5 +212,5 @@ function waitForPlaylistId() {
 }
 
 $("#submit").on("click", function(event) {
-    setInterval(waitForUsername, 3000)
+    setTimeout(waitForUsername, 1000);
 })
