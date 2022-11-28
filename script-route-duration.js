@@ -50,12 +50,40 @@ function initMap () {
 }
 
 document.getElementById("submitButton").addEventListener("click", routeDuration); //event listener for when button is pressed to find user 
- //disable refresh 
+
 
  function routeDuration() {
    console.log("enter destination and finding RD");
-   var userDestination = document.getElementById("dest-input").value;
+
+   var geoCoder = new google.maps.Geocoder();
+   var userDestination = $('#dest-input').val();
    console.log(userDestination);
+   geoCoder.geocode( { 'address': userDestination}, function(results, status) {
+    if (status == google.maps.GeocoderStatus.OK) {
+        destLat = results[0].geometry.location.lat();
+        destLong = results[0].geometry.location.lng();
+    } else {
+    alert('Geocode was not successful for the following reason: ' + status);
+    }
+  })
+  
+  var destLat;
+  var destLong;
+  //-------------------------------------------------------
+  var service = new google.maps.DistanceMatrixService();
+  var origin = new google.maps.LatLng(global_userLat,global_userLong);
+  var destination = new google.maps.LatLng(destLat,destLong);
+  console.log(destination)
+  console.log(origin)
+
+  service.getDistanceMatrix(
+    {
+      origins: {lat:global_userLat, lng:global_userLong},
+      destinations: {lat:destLat, lng:destLong},
+      travelMode: 'DRIVING'
+    })
+    
+
    var routeData = {
      origin: { lat: global_userLat, lng: global_userLong },
      destination: userDestination,
@@ -63,12 +91,7 @@ document.getElementById("submitButton").addEventListener("click", routeDuration)
      unitSystem: google.maps.UnitSystem.IMPERIAL,
    };
 
-   var directionsService = new google.maps.DirectionsService();
-   var request = {
-     origin: {lat: global_userLat, lng: global_userLong}
-     destination: destination, // LatLng|string
-     travelMode: google.maps.DirectionsTravelMode.DRIVING,
-   };
+
    directionsService.route(routeData, (result, status) => {
      if (status == origMap.maps.DirectionStatus.Ok) {
        //find the distance and route diration
