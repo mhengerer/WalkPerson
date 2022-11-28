@@ -10,41 +10,74 @@
   <!-- links for Skeleton Framework CSS files -->
   <link rel="stylesheet" href="./assets/css/normalize.css" />
   <link rel="stylesheet" href="./assets/css/skeleton.css" />
+  <link rel="stylesheet" href="./assets/css/custom.css">
 </head>
 
 <body>
   <header>
-    <div class="row hero">
-      <div class="one-half column left">
-        <h1>Walk-Person</h1>
-        <h4>Create a playlist for your next walk</h4>
+    <div class="section hero">
+      <div class="row">
+        <div class="one-half column">
+          <h1>Walk-Person</h1>
+          <h3>Create a playlist for your next walk</h3>
+        </div>
+        <div class="one-half column">
+          <img class="icon" src="./assets/images/46067.jpg" alt="pedestrian crosswalk icon">
+        </div>
       </div>
+
     </div>
   </header>
   <form>
-    <div class="row">
-      <div class="four columns">
-        <label>Starting Location:</label>
-        <input class="u-full-width" type="text" placeholder="Where are you now?" />
-      </div>
-      <div class="four columns">
-        <label>Ending Location:</label>
-        <input class="u-full-width" type="text" placeholder="Where are you going?" />
-      </div>
-      <div class="four columns">
-        <label>Mood:</label>
-        <select>
-          <option value="1">Upbeat</option>
-          <option value="2">Relaxed</option>
-          <option value="3">Hardcore</option>
-        </select>
+    <div class="section form">
+      <div class="row">
+        <div class="six columns">
+          <label>Ending Location:</label>
+          <input class="u-full-width" type="text" placeholder="Where are you going?" />
+        </div>
+        <div class="six columns">
+          <label>Genre:</label>
+          <select class="u-full-width">
+            <option value="1">Pop</option>
+            <option value="2">Rock</option>
+            <option value="3">Hip-Hop</option>
+            <option value="4">Indie</option>
+            <option value="5">Electronic/Dance</option>
+            <option value="6">Rhythm and Blues</option>
+            <option value="7">Pop/Rock</option>
+            <option value="8">Alternative</option>
+            <option value="9">Punk</option>
+            <option value="10">Country</option>
+            <option value="11">Trap</option>
+            <option value="12">House</option>
+            <option value="13">Emo</option>
+            <option value="14">Freak Folk</option>
+            <option value="15">Contemporary R&B</option>
+            <option value="16">Lowercase</option>
+            <option value="17">Nu Metal</option>
+            <option value="18">Neurofunk</option>
+            <option value="19">Crust Punk</option>
+            <option value="20">Mideval Folk Rock</option>
+            <option value="21">Chill Out</option>
+            <option value="22">Psychobilly</option>
+            <option value="23">Screamo</option>
+            <option value="24">Martial Industrial</option>
+            <option value="25">Liqud Funk</option>
+          </select>
+        </div>
       </div>
     </div>
+
     <button class="u-full-width button-primary">Submit</button>
-    <div id="map" style="width:700px; height: 500px;"></div>
+  </form>
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjEs-V1HGJ2sUwaWta6FhTRjTmAyoNxd4"></script>
 
+  <div id="map" style="width:700px; height: 500px;"></div>
+
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjEs-V1HGJ2sUwaWta6FhTRjTmAyoNxd4"></script>
+
+  <div class="map-responsive">
+    <!-- <iframe src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjEs-V1HGJ2sUwaWta6FhTRjTmAyoNxd4" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe> -->
     <script>
       var map_param = { center: { lat: 35.3071, lng: -80.7352 }, zoom: 12 };
       var map = new google.maps.Map(document.getElementById('map'), map_param);
@@ -54,9 +87,11 @@
 
     </script>
 
-    
-   
-  </form>
+  </div>
+
+
+
+
 
 
   <script src="./spotify-js/spotify-auth.js"></script>
@@ -67,9 +102,5 @@
     <label for="dropdown">Dropdown:</label><br>
     <input type="text" id="dropdown" name="dropdown">
   </form>
-  </div>
-
-  <button onclick="spotifyAuth()">Authenticate Spotify</button>
-  <button onclick="getAccessTokenFromUrl()">Return access token</button>
 
 </body>
