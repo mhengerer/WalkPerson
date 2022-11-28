@@ -87,6 +87,9 @@ return;
 
 }
 
+//route duration in miliseconds and pushed to local storage
+
+
 /*
 function myMap() {
 var mapProp= {
