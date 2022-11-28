@@ -51,67 +51,60 @@ document
   .getElementById("submitButton")
   .addEventListener("click", routeDuration); //event listener for when button is pressed to find user
 
-  var global_destLat;
-  var global_destLong;
+var global_destLat;
+var global_destLong;
 
 function routeDuration() {
   console.log("enter destination and finding RD");
 
   var geoCoder = new google.maps.Geocoder();
   var userDestination = $("#dest-input").val();
-  
+
   console.log(userDestination);
   geoCoder.geocode({ address: userDestination }, function (results, status) {
     if (status == google.maps.GeocoderStatus.OK) {
       global_destLat = results[0].geometry.location.lat();
       global_destLong = results[0].geometry.location.lng();
-      console.log(results[0].geometry.location.lng()+"geocoded lng");
-      console.log(results[0].geometry.location.lat()+"geocoded lat");
+      console.log(results[0].geometry.location.lng() + "geocoded lng");
+      console.log(results[0].geometry.location.lat() + "geocoded lat");
     } else {
       alert("Geocode was not successful for the following reason: " + status);
     }
   });
-  setTimeout(delayedDistanceMatrix,1000);
+  setTimeout(delayedDistanceMatrix, 1000);
 }
 
-
-  //-------------------------------------------------------
-  function delayedDistanceMatrix () {
+//-------------------------------------------------------
+function delayedDistanceMatrix() {
   var service = new google.maps.DistanceMatrixService();
   var origin = new google.maps.LatLng(global_userLat, global_userLong);
   var destination = new google.maps.LatLng(global_destLat, global_destLong);
   console.log(global_destLat);
   console.log(global_destLong);
-  
-  service.getDistanceMatrix({
-    origins: [origin],
-    destinations: [destination],
-    travelMode: "DRIVING",
-  }, callback);
 
-  return;
-
-  var routeData = {
-    origin: { lat: global_userLat, lng: global_userLong },
-    destination: userDestination,
-    travelMode: google.maps.TravelMode.DRIVING,
-    unitSystem: google.maps.UnitSystem.IMPERIAL,
-  };
+  service.getDistanceMatrix(
+    {
+      origins: [origin],
+      destinations: [destination],
+      travelMode: "DRIVING",
+    },
+    callback
+  );
 }
 function callback(response, status) {
-    if (status == "OK") {
-      var origins = response.originAddresses;
-      var destinations = response.destinationAddresses;
-      var results = response.rows[0].elements;
-  
-      for (var j = 0; j < results.length; j++) {
-        var element = results[j];
-        var distance = element.distance.text;
-        var duration = element.duration.text;
-        var from = origins[0];
-        var to = destinations[j];
-        localStorage.setItem("driving", duration.split(" ")[0]);
-        console.log(duration);
-      }
+  if (status == "OK") {
+    var origins = response.originAddresses;
+    var destinations = response.destinationAddresses;
+    var results = response.rows[0].elements;
+
+    for (var j = 0; j < results.length; j++) {
+      var element = results[j];
+      var distance = element.distance.text;
+      var duration = element.duration.text;
+      var from = origins[0];
+      var to = destinations[j];
+      localStorage.setItem("driving", duration.split(" ")[0]);
+      console.log(duration);
     }
+  }
 }
