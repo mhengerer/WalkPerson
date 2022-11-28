@@ -32,3 +32,9 @@ Multiple Google Maps API's: https://console.cloud.google.com/
 -Maps Embeded API
 -Maps Duration API 
 
+FreePik image for logo
+https://www.freepik.com/free-vector/pedestrian-symbol-vector-illustration-isolated-white-background_11053941.htm#query=pedestrianicon&position=0&from_view=keyword?sign-up=google%22%3EImage
+
+![pedestrian-symbol-vector-illustration-isolated-white-background_1284-46067](https://user-images.githubusercontent.com/114114167/204175634-065eb360-9769-4e66-9863-0cb806f4d847.jpeg)
+
+<img width="1906" alt="Screenshot 2022-11-27 at 9 02 33 PM" src="https://user-images.githubusercontent.com/114114167/204176027-edb0a6d9-5059-4c60-9f5f-da4ff0bfb3d5.png">
