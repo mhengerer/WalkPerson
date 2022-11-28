@@ -1,13 +1,11 @@
-
 //Global variables to store user IDs
 var authToken = getAccessTokenFromUrl();
-console.log(authToken);
-var authTokenActive; // Boolean that resets once 3600 seconds are over
-var feedback = null;
-var tracks; // 
-console.log("Tracks var: " + tracks);
-var genres = getGenreList();
-var trackRecomm = getRecommendations();
+var username;
+getUsername();
+var playlistId;
+var tracks = getTracks();
+
+setTimeout(waitForUsername, 3000);
 
 // Creates Spotify authentication link, redirects there, and sends the user back
 function spotifyAuth() {
@@ -25,41 +23,18 @@ function spotifyAuth() {
     url += '&client_id=' + encodeURIComponent(client_id);
     url += '&scope=' + encodeURIComponent(scope);
     url += '&redirect_uri=' + encodeURIComponent(redirect_uri);
-    console.log(url);
     window.location.replace(url);
 }
 
 // Gets full hash info from URL and splits out the access token
 function getAccessTokenFromUrl() {
-    if(!window.location.hash) {
+    if (!window.location.hash) {
         spotifyAuth();
     }
     var hash = window.location.hash.substring(1);
     var hash1 = hash.split('=')[1];
     var hash2 = hash1.split('&')[0];
     return hash2;
-}
-
-// Creates a blank playlist under the authorized user account 
-function createPlaylist() {
-    console.log('createPlaylist', username);
-    // POST URL
-    var url = 'https://api.spotify.com/v1/users/' + username +
-        '/playlists';
-    fetch(url, {
-        method: 'POST',
-        body: JSON.stringify({
-            'name': 'WalkPerson Playlist',
-            'description': 'Test',
-            'public': false
-        }),
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + authToken
-        }
-    }).then((response) => response.json())
-        .then((data) => console.log(data));
 }
 
 // Gets username after OAuth token is generated
@@ -89,52 +64,9 @@ function setUsername(dataId) {
     console.log(username);
 }
 
-function setTracks(dataTracks) {
-    tracks = dataTracks;
-}
-
-// Add tracks to a generated playlist
-// TODO: Logic on syncing # of tracks added with walk length
-// TODO: Make this work
-function addTracks(username, playlist, tracks) {
-    console.log('getUsername');
-    var url = 'https://api.spotify.com/v1/users/' + username +
-        '/playlists/' + playlist + '/tracks';
-    fetch(url, {
-        method: 'POST',
-        body: JSON.stringify(tracks),
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + authToken
-        }
-    }).then((response) => response.json())
-        .then((data) => console.log(data));
-}
-
-//Returns a list of genre tags from Spotify 
-function getGenreList() {
-    console.log('getGenreList');
-    var url = 'https://api.spotify.com/v1/recommendations/available-genre-seeds';
-    fetch(url, {
-        method: 'GET',
-        headers: {
-            'Authorization': 'Bearer ' + authToken
-        }
-    }).then(function (response) {
-        if (response.ok) {
-            console.log(response);
-            response.json().then(function (data) {
-                console.log(data);
-                return (data);
-            });
-        }
-    });
-}
-
 // Returns a list of recommendations based on the search parameters in the URL
 // TODO: Link to addTracks() to fill playlist with recommended tracks
-function getRecommendations(genre) {
+function getTracks() {
     var url = 'https://api.spotify.com/v1/recommendations?';
     //Search parameters for getting recommendations from Spotify
     const LIMIT = 20; // # of songs to recommend
@@ -165,17 +97,108 @@ function getRecommendations(genre) {
             'Content-Type': 'application/json',
             'Authorization': 'Bearer ' + authToken
         }
+    }).then((response) => response.json())
+    .then((data) => setTracks(data));
+}
+
+// Helper function to set playlistId to global variable for use in other functions
+function setTracks(data) {
+    var songIdArray = [];
+    for (var i = 0; i < data.tracks.length; i++) {
+        trackId = data.tracks[i].uri;
+        songIdArray.push(trackId);
+    }
+    console.log(songIdArray);
+    tracks = songIdArray;
+}
+
+
+// Creates a blank playlist under the authorized user account 
+function createPlaylist(username) {
+    console.log('createPlaylist', username);
+    // POST URL
+    var url = 'https://api.spotify.com/v1/users/' + username +
+        '/playlists';
+    fetch(url, {
+        method: 'POST',
+        body: JSON.stringify({
+            'name': 'WalkPerson Playlist',
+            'description': 'Test',
+            'public': false
+        }),
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + authToken
+        }
+    }).then((response) => response.json())
+        .then((data) => setPlaylistId(data.id));
+}
+
+// Helper function to set playlistId to global variable for use in other functions
+function setPlaylistId(dataId) {
+    playlistId = dataId;
+    console.log(playlistId);
+}
+
+
+// Add tracks to a generated playlist
+// TODO: Logic on syncing # of tracks added with walk length
+function addTracks(username, playlistId, tracks) {
+    var url = 'https://api.spotify.com/v1/users/' + username +
+        '/playlists/' + playlistId + '/tracks';
+    console.log(tracks);
+    fetch(url, {
+        method: 'POST',
+        body: JSON.stringify({
+            'uris': tracks,
+            'position': 0 
+        }),
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + authToken
+        }
+    }).then(response => response.json())
+        .then(data => console.log(data));
+}
+
+//Returns a list of genre tags from Spotify 
+function getGenreList() {
+    console.log('getGenreList');
+    var url = 'https://api.spotify.com/v1/recommendations/available-genre-seeds';
+    fetch(url, {
+        method: 'GET',
+        headers: {
+            'Authorization': 'Bearer ' + authToken
+        }
     }).then(function (response) {
         if (response.ok) {
             console.log(response);
             response.json().then(function (data) {
                 console.log(data);
-                tracks = data;
+                return (data);
             });
         }
-    })
-    console.log("Updated tracks: " + JSON.stringify(tracks));
+    });
 }
 
-//Runs Spotify log-in if there is no hash in the URL
-getAccessTokenFromUrl();
+function waitForUsername() {
+    if (username) {
+        createPlaylist(username);
+        console.log("Wait for Username Playlist ID: " + playlistId);
+        waitForPlaylistId(); 
+    } else {
+        setTimeout(waitForUsername, 3000);
+    }
+}
+
+function waitForPlaylistId() {
+    if (playlistId && tracks) {
+        console.log("Username: " + username); 
+        console.log("Playlist ID: " + playlistId); 
+        console.log("Tracks: " + tracks);
+        addTracks(username, playlistId, tracks);
+    } else {
+        setTimeout(waitForPlaylistId, 3000);
+    }
+}
