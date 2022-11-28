@@ -23,7 +23,7 @@
 
   </head>
   <header>
-    <form>
+    <!---<form>-->
       <div>
         <label>Starting Location:</label>
         <input
@@ -40,19 +40,8 @@
           id = "dest-input"
           placeholder="Where are you going?"
         />
-        <div id="map" style="width:700px; height: 500px;"></div>
+        <div id="origMap" style="width:700px; height: 500px;"></div>
 
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjEs-V1HGJ2sUwaWta6FhTRjTmAyoNxd4"></script>
-  
-       <script>
-           var map_param = { center: { lat: 35.3071, lng: -80.7352 }, zoom: 12 };
-           var map = new google.maps.Map(document.getElementById('map'), map_param);
-           var dropPin1 = { position: { lat: 35.3071, lng: -80.7352 }, map: map };
-          
-           var marker = new google.maps.Marker(dropPin1);
-         
-        </script>
-  
   
     </div>
       </div>
@@ -65,7 +54,7 @@
         </select>
       </div>
       <button id="submitButton" class="u-full-width button-primary">Submit</button>
-    </form>
+    <!---</form> -->
   </header>
 
     <script src="./spotify-js/spotify-auth.js"></script>
@@ -81,9 +70,12 @@
     <button onclick="spotifyAuth()">Authenticate Spotify</button>
     <button onclick="getAccessTokenFromUrl()">Return access token</button>
 
+    <div id="duration"> </div>
+
 </body>
 
 <script src="./script-route-duration.js"> </script> 
+
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjEs-V1HGJ2sUwaWta6FhTRjTmAyoNxd4&callback=initMap"></script>
-    
+
       </html>

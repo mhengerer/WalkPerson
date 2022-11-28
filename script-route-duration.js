@@ -2,38 +2,78 @@
 var apiKey = "AIzaSyDjEs-V1HGJ2sUwaWta6FhTRjTmAyoNxd4";
 
 x = navigator.geolocation;
-x.getCurrentPosition (success, failure);
+x.getCurrentPosition (success, failure); 
 
+var global_userLat;
+var global_userLong;
+var origMap;
 
 function success (position) {
+console.log("success")
 
-var userLat = position.coords.latitiude; //keep - finds user lat
-var userLong = position.coords.longitude; //keep - finds user long
-var userLocation = new google.maps.LatLng(userLat,userLong); //use for origin in route duration - merges lat and long into usable data for user origin
+var userLat = position.coords.latitude; //keep - finds user lat
+var userLong = position.coords.longitude; //keep - finds user 
+console.log(userLat)
+console.log(userLong)
 
+global_userLat = userLat;
+global_userLong = userLong;
+var userLocation = [userLat,userLong]; //use for origin in route duration - merges lat and long into usable data for user origin
+console.log(userLocation)
+
+var mapAttr = {
+    zoom: 12, 
+    center: {lat:userLat, lng:userLong}, 
+    mapTypeId: google.maps.MapTypeId.ROADMAP
 }
 
-function failure () {}
+origMap = new google.maps.Map(document.getElementById("origMap"), mapAttr);
+window.initMap = this.initMap;
 
-var userDestination = document.getElementById("dest-input").value;
-var userLocation = new google.maps.LatLng(userLat,userLong); 
+return;
 
+var origMap = new google.maps.Map(document.getElementById("origMap"), mapAttr);
+var userMarker = new google.maps.Marker({
+    map: origMap, 
+    position: userLocation
+});
+}
 
- document.getElementById("submitButton").addEventListener("click", initMap); //event listener for when button is pressed to find user 
+function failure () {
+    console.log("failure")
+}
+
+var directionsService 
 
 function initMap () {
+    console.log('test')
+    directionsService = new google.maps.DirectionsService()
+}
+
+
+ document.getElementById("submitButton").addEventListener("click", routeDuration); //event listener for when button is pressed to find user 
+
+ //disable refresh 
+
+function routeDuration () {
+
+console.log("enter destination and finding RD")
+
+    var userDestination = document.getElementById("dest-input").value;
+    console.log(userDestination)
 
     var routeData = {  
 
-        origin: userLocation,
-        destination: document.getElementById("dest-input").value,
+        origin: {lat: global_userLat, lng: global_userLong},
+        destination: userDestination,
         travelMode: google.maps.TravelMode.DRIVING, 
         unitSystem: google.maps.UnitSystem.IMPERIAL
     
     }
-
+    
+return;
     directionsService.route(routeData, (result, status) => { 
-            if (status == google.maps.DirectionStatus.Ok) { //find the distance and route diration
+            if (status == origMap.maps.DirectionStatus.Ok) { //find the distance and route diration
 
                 const duration = document.querySelector("#duration");
                 duration.innerHTML = "Your trip is " + result.routes[0].legs[0].distance.text + "long and will take " + result.routes[0].legs[0].duration.text + "!";
@@ -47,13 +87,14 @@ function initMap () {
 
 }
 
-
+/*
 function myMap() {
 var mapProp= {
   center: userLocation,
-  zoom:5,
+  zoom:12,
   mapTypeId: google.maps.MapTypeId.ROADMAP
 };
+*/
 
 //let latLngArray = [];
 
@@ -62,13 +103,8 @@ var mapProp= {
   //latLngArray.push(gData);
 //}
 
-var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
 
-renderMap = () => {
-    loadScript("https://maps.googleapis.com/maps/api/js?key=AIzaSyDjEs-V1HGJ2sUwaWta6FhTRjTmAyoNxd4Y&callback=initMap");
-    window.initMap = this.initMap;
-  }
-}
+
 
 
 
@@ -77,13 +113,13 @@ renderMap = () => {
  // map should already be linked through HTML
 
  // insert direction service object use root method to get result 
- var directionService = new google.maps.maps.DirectionService();
+ //var directionService = new google.maps.maps.DirectionService();
 
  // direction render object used to display the root 
- var directionsRenderer = new google.maps.DirectionsRenderer();
+ ////var directionsRenderer = new google.maps.DirectionsRenderer();
 
  // call the directions to the map 
- directionsDisplay.setMap(Map);
+ //directionsDisplay.setMap(Map);
  
 
 
