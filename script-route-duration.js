@@ -28,15 +28,11 @@ var mapAttr = {
 }
 
 origMap = new google.maps.Map(document.getElementById("origMap"), mapAttr);
+
 window.initMap = this.initMap;
 
 return;
 
-var origMap = new google.maps.Map(document.getElementById("origMap"), mapAttr);
-var userMarker = new google.maps.Marker({
-    map: origMap, 
-    position: userLocation
-});
 }
 
 function failure () {
@@ -72,6 +68,7 @@ console.log("enter destination and finding RD")
     }
     
 return;
+
     directionsService.route(routeData, (result, status) => { 
             if (status == origMap.maps.DirectionStatus.Ok) { //find the distance and route diration
 
@@ -105,6 +102,7 @@ var mapProp= {
   //const gData = new google.maps.LatLng(array[i][0], array[i][1]);
   //latLngArray.push(gData);
 //}
+
 
 
 
