@@ -13,8 +13,7 @@ var playlistLength = 900000;
 function spotifyAuth() {
     //Application ID for Spotify
     var client_id = '5ecfa1d90ccc4d07be652c727956201c';
-    //Site to redirect back to
-    var redirect_uri = 'http://127.0.0.1:5500/';
+    var redirect_uri = 'https://mhengerer.github.io/WalkPerson/';
 
     //Permissions
     var scope = 'user-read-private user-read-email playlist-modify-public playlist-modify-private';
