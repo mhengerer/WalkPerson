@@ -13,7 +13,7 @@ var playlistLength = 900000;
 function spotifyAuth() {
     //Application ID for Spotify
     var client_id = '5ecfa1d90ccc4d07be652c727956201c';
-    var redirect_uri = 'https://mhengerer.github.io/WalkPerson/';
+    var redirect_uri = 'http://127.0.0.1:5500/';
 
     //Permissions
     var scope = 'user-read-private user-read-email playlist-modify-public playlist-modify-private';
@@ -68,12 +68,14 @@ function setUsername(dataId) {
 // Returns a list of recommendations based on the search parameters in the URL
 // TODO: Link to addTracks() to fill playlist with recommended tracks
 function getTracks() {
+    var genre = $('.genre-dropdown').val();
+
     var url = 'https://api.spotify.com/v1/recommendations?';
     //Search parameters for getting recommendations from Spotify
     const LIMIT = 30; // # of songs to recommend
     const MARKET = 'US'; // Country to select songs from
     const SEED_ARTISTS = '4NHQUGzhtTLFvgF5SZesLK'; // Artist seed
-    const SEED_GENRES = encodeURIComponent('metal, pop, dubstep'); //Genre seed
+    const SEED_GENRES = encodeURIComponent(genre); //Genre seed
     const SEED_TRACKS = '0c6xIDDpzE81m2q797ordA'; //Tracks seed
     const MIN_DURATION_MS = 120000; // Minimum song duration (in ms)
     const MAX_DURATION_MS = 240000; // Maximum song duration (in ms)
