@@ -1,0 +1,60 @@
+* {
+  color: #6f4bf2;
+  font-family: "Alata", sans-serif;
+}
+
+.section {
+  padding: 8rem 0 7rem;
+}
+
+.icon {
+  position: relative;
+  max-width: 80%;
+  margin: 3rem auto -12rem;
+}
+
+.form {
+  color: white;
+  background-color: #dceac2;
+}
+
+.map-responsive {
+  overflow: hidden;
+  padding-bottom: 56.25%;
+  position: relative;
+  height: 0;
+}
+
+@media (min-width: 550px) {
+  .section {
+    padding: 12rem 0 11rem;
+  }
+  .icon {
+    position: absolute;
+    top: 8rem;
+    right: 3rem;
+    max-height: 362px;
+    z-index: 3;
+  }
+}
+
+@media (min-width: 750px) {
+  .section {
+    padding: 14rem 0 15rem;
+  }
+  .icon {
+    top: 6rem;
+    right: 5rem;
+    max-height: 510px;
+  }
+}
+
+@media (min-width: 1000px) {
+  .section {
+    padding: 20rem 0 19rem;
+  }
+  .icon {
+    top: 5rem;
+    max-height: 615px;
+  }
+}
