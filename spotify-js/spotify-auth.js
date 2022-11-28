@@ -68,12 +68,14 @@ function setUsername(dataId) {
 // Returns a list of recommendations based on the search parameters in the URL
 // TODO: Link to addTracks() to fill playlist with recommended tracks
 function getTracks() {
+    var genre = $('.genre-dropdown').val();
+
     var url = 'https://api.spotify.com/v1/recommendations?';
     //Search parameters for getting recommendations from Spotify
     const LIMIT = 30; // # of songs to recommend
     const MARKET = 'US'; // Country to select songs from
     const SEED_ARTISTS = '4NHQUGzhtTLFvgF5SZesLK'; // Artist seed
-    const SEED_GENRES = encodeURIComponent('metal, pop, dubstep'); //Genre seed
+    const SEED_GENRES = encodeURIComponent(genre); //Genre seed
     const SEED_TRACKS = '0c6xIDDpzE81m2q797ordA'; //Tracks seed
     const MIN_DURATION_MS = 120000; // Minimum song duration (in ms)
     const MAX_DURATION_MS = 240000; // Maximum song duration (in ms)
@@ -167,7 +169,7 @@ function addTracks(username, playlistId, tracks) {
         .then(data => console.log(data));
 }
 
-//Returns a list of genre tags from Spotify 
+//Returns a list of genre tags from Spotify
 function getGenreList() {
     console.log('getGenreList');
     var url = 'https://api.spotify.com/v1/recommendations/available-genre-seeds';
@@ -209,3 +211,7 @@ function waitForPlaylistId() {
         setTimeout(waitForPlaylistId, 3000);
     }
 }
+
+$("#submit").on("click", function(event) {
+    setInterval(waitForUsername, 3000)
+})

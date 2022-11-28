@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="./assets/css/skeleton.css" />
   <!-- link to custom CSS file -->
   <link rel="stylesheet" href="./assets/css/custom.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -40,10 +41,10 @@
         </div>
         <div class="six columns">
           <label>Genre:</label>
-          <select class="u-full-width">
-            <option value="Pop">Pop</option>
-            <option value="Rock">Rock</option>
-            <option value="Hip-Hop">Hip-Hop</option>
+          <select id="genre-dropdown" class="u-full-width">
+            <option value="pop">Pop</option>
+            <option value="rock">Rock</option>
+            <option value="hip-hop">Hip-Hop</option>
             <!-- <option value="Indie">Indie</option>
             <option value="Electronic/Dance">Electronic/Dance</option>
             <option value="Rhythm and Blues">Rhythm and Blues</option>
@@ -71,7 +72,7 @@
       </div>
     </div>
 
-    <button class="u-full-width button-primary">Submit</button>
+    <button id="submit" class="u-full-width button-primary">Submit</button>
   </form>
 
 
@@ -91,12 +92,6 @@
       </script>
     </div>
   </div>
-
-
-
-
-
-
 
   <script src="./spotify-js/spotify-auth.js"></script>
 
