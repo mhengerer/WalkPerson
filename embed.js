@@ -7,14 +7,26 @@ window.onSpotifyIframeApiReady = (IFrameAPI) => {
     IFrameAPI.createController(element, options, callback);
   };
 
+  var spotifyUri = localStorage.getItem('spotify_uri') ? '';
+  localStorage.getItem('spotify_uri'); 
+  
+
   //variables
 
   var userChoice;
 
   //element selectors
 
+  valEl1=document.getElementById('#1')
+  valEl2=document.getElementById('#2')
+  valEl3=document.getElementById('#3')
+
+
 
   //const
+
+
+  //functions
 
 
   //if statement
@@ -32,4 +44,25 @@ window.onSpotifyIframeApiReady = (IFrameAPI) => {
 
 
   //playlist should be given to them with songs to match coice
+
+
+  //variable(s)
+
+  //element(s)
+
+  //function(s)
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+  
 
