@@ -36,6 +36,12 @@
   flex-direction: column;
 }
 
+#label {
+  font-size: 3rem;
+}
+
+
+
 @media (min-width: 550px) {
   .section {
     padding: 12rem 0 11rem;
