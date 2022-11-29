@@ -90,6 +90,7 @@ function delayedDistanceMatrix() {
     },
     callback
   );
+  setTimeout(directions, 3000);
 }
 function callback(response, status) {
   if (status == "OK") {
@@ -109,20 +110,52 @@ function callback(response, status) {
   }
 }
 
-var directionsService = new google.maps.DirectionsService();
-directionsService.route(
+var directionsRenderer = new google.maps.DirectionsRenderer();
+
+function directions() {
+
+  var directionsService = new google.maps.DirectionsService();
+  directionsService.route(
     {
-        origin: {lat:global_userLat, lng:global_userLong},
-        destination: {lat:global_destLat, lng:global_destLong},
-        travelMode: 'DRIVING'
+      origin: { lat: global_userLat, lng: global_userLong },
+      destination: { lat: global_destLat, lng: global_destLong },
+      travelMode: 'DRIVING'
 
     },
     (response, status) => {
-        console.log(response);
-        console.log(status);
+      console.log(response);
+      console.log(status);
     }
-)
+  )
+  console.log(global_userLat);
+  console.log(global_destLat)
 
+  var userRoute = new google.maps.LatLng(global_userLat, global_userLong);
+  var mapOptions = {
+    zoom: 12,
+    center: userRoute,
+    mapTypeId: google.maps.MapTypeId.ROADMAP,
+  }
+
+  directionsRenderer.setMap(origMap);
+
+ 
+}
 
 //directions function
 //overlay on the mapgit pu
+
+function calcRoute() {
+  var start = { lat: global_userLat, lng: global_userLong };
+  var end =  { lat: global_destLat, lng: global_destLong };
+  var request = {
+    origin: start,
+    destination: end,
+    travelMode: 'DRIVING'
+  };
+  directionsService.route(request, function (result, status) {
+    if (status == 'OK') {
+      directionsRenderer.setDirections(result);
+    }
+  })
+}
