@@ -12,6 +12,23 @@ https://github.com/mhengerer/WalkPerson - Git Hub
 ### Usage 
 Designed as a platform for a simple user friendly way to relax take a hike and listen to music that suits your current mood.  
 
+Instructions for use :
+
+Go to : https://mhengerer.github.io/WalkPerson/
+
+User enters Spotify log-in information or create a new Spotify account
+
+In the "Where are you going?" text box user puts in desired destination address.
+
+User then selects preferred genre from the drop down menu
+
+User clicks submit
+
+User then will review the embed for the preview of the playlist
+
+User  then will click play on your Spotify account
+
+
 #### Contributers 
 Lexi Arbajian
 Zyon Cumberbatch
@@ -35,6 +52,11 @@ Multiple Google Maps API's: https://console.cloud.google.com/
 FreePik image for logo
 https://www.freepik.com/free-vector/pedestrian-symbol-vector-illustration-isolated-white-background_11053941.htm#query=pedestrianicon&position=0&from_view=keyword?sign-up=google%22%3EImage
 
-![pedestrian-symbol-vector-illustration-isolated-white-background_1284-46067](https://user-images.githubusercontent.com/114114167/204175634-065eb360-9769-4e66-9863-0cb806f4d847.jpeg)
 
-<img width="1906" alt="Screenshot 2022-11-27 at 9 02 33 PM" src="https://user-images.githubusercontent.com/114114167/204176027-edb0a6d9-5059-4c60-9f5f-da4ff0bfb3d5.png">
+
+<img width="662" alt="Screenshot 2022-11-29 at 5 22 39 PM" src="https://user-images.githubusercontent.com/114114167/204661380-b5b42c54-03b6-4cd3-b5f0-4d5116464db3.png">
+
+
+<img width="1058" alt="Screenshot 2022-11-29 at 5 19 01 PM" src="https://user-images.githubusercontent.com/114114167/204669034-f29af419-3663-4872-bbb9-50be03649c81.png">
+
+![FTrJEx8 (1)](https://user-images.githubusercontent.com/114114167/204669821-8d91ac23-8ebe-495e-8930-f0d9fe0d2b39.png)
