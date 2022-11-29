@@ -74,7 +74,6 @@ function routeDuration() {
   setTimeout(delayedDistanceMatrix, 1000);
 }
 
-//-------------------------------------------------------
 function delayedDistanceMatrix() {
   var service = new google.maps.DistanceMatrixService();
   var origin = new google.maps.LatLng(global_userLat, global_userLong);
@@ -94,16 +93,12 @@ function delayedDistanceMatrix() {
 }
 function callback(response, status) {
   if (status == "OK") {
-    var origins = response.originAddresses;
-    var destinations = response.destinationAddresses;
     var results = response.rows[0].elements;
 
     for (var j = 0; j < results.length; j++) {
       var element = results[j];
       var distance = element.distance.text;
       var duration = element.duration.text;
-      var from = origins[0];
-      var to = destinations[j];
       localStorage.setItem("driving", duration.split(" ")[0]);
       console.log(duration);
     }
@@ -131,13 +126,6 @@ function directions() {
   console.log(global_userLat);
   console.log(global_destLat)
 
-  var userRoute = new google.maps.LatLng(global_userLat, global_userLong);
-  // var mapOptions = {
-  //   zoom: 12,
-  //   center: userRoute,
-  //   mapTypeId: google.maps.MapTypeId.ROADMAP,
-  // }
-  //var map = new google.maps.Map(document.getElementById('map'), mapOptions);
   directionsRenderer.setMap(origMap);
   calcRoute();
 }
