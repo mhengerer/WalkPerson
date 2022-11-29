@@ -25,6 +25,17 @@
   height: 0;
 }
 
+.title {
+  padding-left: 5rem;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
 @media (min-width: 550px) {
   .section {
     padding: 12rem 0 11rem;
