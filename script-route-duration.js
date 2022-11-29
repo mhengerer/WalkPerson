@@ -109,6 +109,20 @@ function callback(response, status) {
   }
 }
 
+var directionsService = new google.maps.DirectionsService();
+directionsService.route(
+    {
+        origin: {lat:global_userLat, lng:global_userLong},
+        destination: {lat:global_destLat, lng:global_destLong},
+        travelMode: 'DRIVING'
+
+    },
+    (response, status) => {
+        console.log(response);
+        console.log(status);
+    }
+)
+
 
 //directions function
 //overlay on the mapgit pu
