@@ -47,10 +47,6 @@ function initMap() {
   directionsService = new google.maps.DirectionsService();
 }
 
-document
-  .getElementById("submitButton")
-  .addEventListener("click", routeDuration); //event listener for when button is pressed to find user
-
 var global_destLat;
 var global_destLong;
 
@@ -91,6 +87,7 @@ function delayedDistanceMatrix() {
   );
   setTimeout(directions, 3000);
 }
+
 function callback(response, status) {
   if (status == "OK") {
     var results = response.rows[0].elements;
@@ -99,10 +96,29 @@ function callback(response, status) {
       var element = results[j];
       var distance = element.distance.text;
       var duration = element.duration.text;
-      localStorage.setItem("driving", duration.split(" ")[0]);
+      localStorage.setItem("driving", timeConverter(duration));
       console.log(duration);
     }
   }
+}
+
+function timeConverter(timeHrs) {
+  var hoursToMins; 
+  var minsToMs; 
+
+  var splitString = timeHrs.split(' ');
+  console.log(splitString); 
+  if(splitString[1] == "hour" || "hours") {
+    hoursToMins = splitString[0] * 60;
+    hoursToMins += splitString[2]; 
+    minsToMs = hoursToMins * 60000;
+    console.log("Length in ms: " + minsToMs);
+    return minsToMs;
+  } else {
+    console.log(splitString[1]);
+    return splitString[1] * 1000;
+  }
+
 }
 
 var directionsRenderer;
