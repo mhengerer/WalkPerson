@@ -47,9 +47,10 @@ function initMap() {
   directionsService = new google.maps.DirectionsService();
 }
 
-document
-  .getElementById("submitButton")
-  .addEventListener("click", routeDuration); //event listener for when button is pressed to find user
+$("#submitButton").click(routeDuration);
+//document
+  //.getElementById("submitButton")
+  //.addEventListener("click", routeDuration); //event listener for when button is pressed to find user
 
 var global_destLat;
 var global_destLong;
@@ -74,8 +75,8 @@ function routeDuration() {
   setTimeout(delayedDistanceMatrix, 1000);
 }
 
-//-------------------------------------------------------
 function delayedDistanceMatrix() {
+    console.log("hello world")
   var service = new google.maps.DistanceMatrixService();
   var origin = new google.maps.LatLng(global_userLat, global_userLong);
   var destination = new google.maps.LatLng(global_destLat, global_destLong);
