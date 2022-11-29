@@ -110,11 +110,12 @@ function callback(response, status) {
   }
 }
 
-var directionsRenderer = new google.maps.DirectionsRenderer();
+var directionsRenderer;
+var directionsService;
 
 function directions() {
-
-  var directionsService = new google.maps.DirectionsService();
+  directionsService = new google.maps.DirectionsService();
+  directionsRenderer = new google.maps.DirectionsRenderer();
   directionsService.route(
     {
       origin: { lat: global_userLat, lng: global_userLong },
@@ -131,15 +132,14 @@ function directions() {
   console.log(global_destLat)
 
   var userRoute = new google.maps.LatLng(global_userLat, global_userLong);
-  var mapOptions = {
-    zoom: 12,
-    center: userRoute,
-    mapTypeId: google.maps.MapTypeId.ROADMAP,
-  }
-
+  // var mapOptions = {
+  //   zoom: 12,
+  //   center: userRoute,
+  //   mapTypeId: google.maps.MapTypeId.ROADMAP,
+  // }
+  //var map = new google.maps.Map(document.getElementById('map'), mapOptions);
   directionsRenderer.setMap(origMap);
-
- 
+  calcRoute();
 }
 
 //directions function
