@@ -74,7 +74,6 @@ function routeDuration() {
   setTimeout(delayedDistanceMatrix, 1000);
 }
 
-//-------------------------------------------------------
 function delayedDistanceMatrix() {
   var service = new google.maps.DistanceMatrixService();
   var origin = new google.maps.LatLng(global_userLat, global_userLong);
@@ -90,39 +89,61 @@ function delayedDistanceMatrix() {
     },
     callback
   );
+  setTimeout(directions, 3000);
 }
 function callback(response, status) {
   if (status == "OK") {
-    var origins = response.originAddresses;
-    var destinations = response.destinationAddresses;
     var results = response.rows[0].elements;
 
     for (var j = 0; j < results.length; j++) {
       var element = results[j];
       var distance = element.distance.text;
       var duration = element.duration.text;
-      var from = origins[0];
-      var to = destinations[j];
       localStorage.setItem("driving", duration.split(" ")[0]);
       console.log(duration);
     }
   }
 }
 
-var directionsService = new google.maps.DirectionsService();
-directionsService.route(
+var directionsRenderer;
+var directionsService;
+
+function directions() {
+  directionsService = new google.maps.DirectionsService();
+  directionsRenderer = new google.maps.DirectionsRenderer();
+  directionsService.route(
     {
-        origin: {lat:global_userLat, lng:global_userLong},
-        destination: {lat:global_destLat, lng:global_destLong},
-        travelMode: 'DRIVING'
+      origin: { lat: global_userLat, lng: global_userLong },
+      destination: { lat: global_destLat, lng: global_destLong },
+      travelMode: 'DRIVING'
 
     },
     (response, status) => {
-        console.log(response);
-        console.log(status);
+      console.log(response);
+      console.log(status);
     }
-)
+  )
+  console.log(global_userLat);
+  console.log(global_destLat)
 
+  directionsRenderer.setMap(origMap);
+  calcRoute();
+}
 
 //directions function
 //overlay on the mapgit pu
+
+function calcRoute() {
+  var start = { lat: global_userLat, lng: global_userLong };
+  var end =  { lat: global_destLat, lng: global_destLong };
+  var request = {
+    origin: start,
+    destination: end,
+    travelMode: 'DRIVING'
+  };
+  directionsService.route(request, function (result, status) {
+    if (status == 'OK') {
+      directionsRenderer.setDirections(result);
+    }
+  })
+}
