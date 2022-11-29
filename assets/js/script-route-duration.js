@@ -63,9 +63,6 @@ function routeDuration() {
       global_destLong = results[0].geometry.location.lng();
       console.log(results[0].geometry.location.lng() + "geocoded lng");
       console.log(results[0].geometry.location.lat() + "geocoded lat");
-    } else {
-      alert("Geocode was not successful for the following reason: " + status);
-    }
   });
   setTimeout(delayedDistanceMatrix, 1000);
 }
