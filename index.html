@@ -12,7 +12,6 @@
   <!-- links for Skeleton Framework CSS files -->
   <link rel="stylesheet" href="./assets/css/normalize.css" />
   <link rel="stylesheet" href="./assets/css/skeleton.css" />
-  <link rel="stylesheet" href="./assets/css/style.css" />
 
   <!-- link to custom CSS file -->
   <link rel="stylesheet" href="./assets/css/custom.css">
@@ -24,7 +23,7 @@
     <div class="section hero">
       <div class="row">
         <div class="one-half column title">
-          <h1>Walk-Person</h1>
+          <h1>WalkPerson</h1>
           <h3>Create a playlist for your next walk</h3>
         </div>
         <div class="one-half column">
@@ -34,22 +33,20 @@
 
     </div>
   </header>
-  <!--<form>-->
+  <div class="section form">
+    <div class="row">
+      <div class="six columns">
+        <label id="label">Ending Location:</label>
+        <input id="dest-input" class="u-full-width" type="text" placeholder="Where are you going?" />
 
-    <div class="section form">
-      <div class="row">
-        <div class="six columns">
-          <label id="label">Ending Location:</label>
-          <input id="dest-input" class="u-full-width" type="text" placeholder="Where are you going?" />
-
-        </div>
-        <div class="six columns">
-          <label id="label">Genre:</label>
-          <select id="genre-dropdown" class="u-full-width">
-            <option value="pop">Pop</option>
-            <option value="rock">Rock</option>
-            <option value="hip-hop">Hip-Hop</option>
-            <!-- <option value="Indie">Indie</option>
+      </div>
+      <div class="six columns">
+        <label id="label">Genre:</label>
+        <select id="genre-dropdown" class="u-full-width">
+          <option value="pop">Pop</option>
+          <option value="rock">Rock</option>
+          <option value="hip-hop">Hip-Hop</option>
+          <!-- <option value="Indie">Indie</option>
             <option value="Electronic/Dance">Electronic/Dance</option>
             <option value="Rhythm and Blues">Rhythm and Blues</option>
             <option value="Pop/Rock">Pop/Rock</option>
@@ -77,17 +74,21 @@
   </div>
 
   <button id="submitButton" class="u-full-width button-primary">Submit</button>
-  <!--</form>-->
-
-  <div id="map" style="width:700px; height: 500px;"></div>
 
   <div>
-    <div id="origMap" style="width:100%;height:400px">
-      <iframe async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjEs-V1HGJ2sUwaWta6FhTRjTmAyoNxd4&callback=initMap"
-        width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false"
-        tabindex="0"></iframe>
-
+    <div>
+      <div id="origMap" style="width:100%;height:400px">
+        <iframe async defer
+          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjEs-V1HGJ2sUwaWta6FhTRjTmAyoNxd4&callback=initMap"
+          width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false"
+          tabindex="0"></iframe>
+      </div>
+    </div>
+    <div>
+      <div id="embed-iframe" style="width:100%;height:400px">
+        <iframe id='style' src=" " 
+          frameborder="0" style="height:400px;width:414px" allowfullscreen aria-hidden="false" tabindex="0"></iframe>
+      </div>
     </div>
   </div>
   <script src="./assets/js/spotify-auth.js"></script>
@@ -95,5 +96,7 @@
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjEs-V1HGJ2sUwaWta6FhTRjTmAyoNxd4&callback=initMap"></script>
   <script src="./assets/js/script-route-duration.js"></script>
   <script src="./assets/js/submit-button.js"></script>
+  <script src="./assets/js/embed.js"></script>
 </body>
+
 </html>
