@@ -21,20 +21,12 @@
     <div>
         
         Live Map
-        <div id="map" style="width:700px; height: 500px;"></div>
+        <div id="googleMap" style="width:700px; height: 500px;"></div>
+        <div id="duration">
+          duration
+        </div>
 
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjEs-V1HGJ2sUwaWta6FhTRjTmAyoNxd4"></script>
-  
-       <script>
-           var map_param = { center: { lat: 35.3071, lng: -80.7352 }, zoom: 12 };
-           var map = new google.maps.Map(document.getElementById('map'), map_param);
-           var dropPin1 = { position: { lat: 35.3071, lng: -80.7352 }, map: map };
-          
-           var marker = new google.maps.Marker(dropPin1);
-         
-        </script>
-  
-  
+    
     </div>
     </div>
 
@@ -43,3 +35,9 @@
     </div>
 
   </main>
+
+  <script src="./script-route-duration.js"> </script>
+
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjEs-V1HGJ2sUwaWta6FhTRjTmAyoNxd4&callback=initMap" async defer></script>
+
+  </html>
