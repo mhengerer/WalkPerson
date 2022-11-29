@@ -3,15 +3,17 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Fetch Demo</title>
-  <!-- link for chosen font ALATA -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WalkPerson</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Alata&display=swap" rel="stylesheet">
+
   <!-- links for Skeleton Framework CSS files -->
   <link rel="stylesheet" href="./assets/css/normalize.css" />
   <link rel="stylesheet" href="./assets/css/skeleton.css" />
+  <link rel="stylesheet" href="./assets/css/style.css" />
+
   <!-- link to custom CSS file -->
   <link rel="stylesheet" href="./assets/css/custom.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
@@ -21,26 +23,28 @@
   <header>
     <div class="section hero">
       <div class="row">
-        <div class="one-half column">
+        <div class="one-half column title">
           <h1>Walk-Person</h1>
           <h3>Create a playlist for your next walk</h3>
         </div>
         <div class="one-half column">
-          <img class="icon" src="./assets/images/46067.jpg" alt="pedestrian crosswalk icon">
+          <img class="icon" src="./assets/images/46067new.png" alt="pedestrian crosswalk icon">
         </div>
       </div>
 
     </div>
   </header>
-  <form>
+  <!--<form>-->
+
     <div class="section form">
       <div class="row">
         <div class="six columns">
-          <label>Ending Location:</label>
-          <input class="u-full-width" type="text" placeholder="Where are you going?" />
+          <label id="label">Ending Location:</label>
+          <input id="dest-input" class="u-full-width" type="text" placeholder="Where are you going?" />
+
         </div>
         <div class="six columns">
-          <label>Genre:</label>
+          <label id="label">Genre:</label>
           <select id="genre-dropdown" class="u-full-width">
             <option value="pop">Pop</option>
             <option value="rock">Rock</option>
@@ -67,39 +71,29 @@
             <option value="Screamo">Screamo</option>
             <option value="Martial Industrial">Martial Industrial</option>
             <option value="Liqud Funk">Liqud Funk</option> -->
-          </select>
-        </div>
+        </select>
       </div>
-    </div>
-
-    <button id="submit" class="u-full-width button-primary">Submit</button>
-  </form>
-
-
-  <div id="map" style="width:700px; height: 500px;"></div>
-
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjEs-V1HGJ2sUwaWta6FhTRjTmAyoNxd4"></script>
-  <div>
-    <div id="googleMap" style="width:100%;height:400px">
-      <!-- <iframe src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjEs-V1HGJ2sUwaWta6FhTRjTmAyoNxd4" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe> -->
-      <script>
-        var map_param = { center: { lat: 35.3071, lng: -80.7352 }, zoom: 12 };
-        var map = new google.maps.Map(document.getElementById('map'), map_param);
-        var dropPin1 = { position: { lat: 35.3071, lng: -80.7352 }, map: map };
-
-        var marker = new google.maps.Marker(dropPin1);
-
-      </script>
     </div>
   </div>
 
-  <script src="./spotify-js/spotify-auth.js"></script>
+  <button id="submitButton" class="u-full-width button-primary">Submit</button>
+  <!--</form>-->
 
-  <form>
-    <label for="destination">Destination:</label><br>
-    <input type="text" id="destination" name="destination"><br>
-    <label for="dropdown">Dropdown:</label><br>
-    <input type="text" id="dropdown" name="dropdown">
-  </form>
+  <div id="map" style="width:700px; height: 500px;"></div>
 
+  <div>
+    <div id="origMap" style="width:100%;height:400px">
+      <iframe async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjEs-V1HGJ2sUwaWta6FhTRjTmAyoNxd4&callback=initMap"
+        width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false"
+        tabindex="0"></iframe>
+
+    </div>
+  </div>
+  <script src="./assets/js/spotify-auth.js"></script>
+  <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjEs-V1HGJ2sUwaWta6FhTRjTmAyoNxd4&callback=initMap"></script>
+  <script src="./assets/js/script-route-duration.js"></script>
+  <script src="./assets/js/submit-button.js"></script>
 </body>
+</html>

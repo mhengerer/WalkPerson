@@ -7,7 +7,16 @@ var tracks;
 
 //For integration with the embed and Google Maps
 var playlistURI;
-var playlistLength = 900000;
+var playlistLength;
+
+function playlistLength() {
+    var length = localStorage.getItem('driving');
+    if(!length) {
+        setTimeout(playlistLength, 3000); 
+    } else {
+        return length; 
+    }
+}
 
 // Creates Spotify authentication link, redirects there, and sends the user back
 function spotifyAuth() {
@@ -71,7 +80,7 @@ function getTracks() {
 
     var url = 'https://api.spotify.com/v1/recommendations?';
     //Search parameters for getting recommendations from Spotify
-    const LIMIT = 30; // # of songs to recommend
+    const LIMIT = 99; // # of songs to recommend
     const MARKET = 'US'; // Country to select songs from
     const SEED_ARTISTS = '4NHQUGzhtTLFvgF5SZesLK'; // Artist seed
     const SEED_GENRES = encodeURIComponent(genre); //Genre seed
@@ -211,6 +220,14 @@ function waitForPlaylistId() {
     }
 }
 
-$("#submit").on("click", function(event) {
-    setTimeout(waitForUsername, 1000);
-})
+function getURI() {
+    if(localStorage.getItem('spotify')){
+        return localStorage.getItem('spotify'); 
+    } else {
+        setTimeout(getURI, 4000); 
+    }
+}
+
+// $("#submit").on("click", function(event) {
+//     setTimeout(waitForUsername, 1000);
+// })
