@@ -54,9 +54,9 @@ https://www.freepik.com/free-vector/pedestrian-symbol-vector-illustration-isolat
 
 
 
-<img width="662" alt="Screenshot 2022-11-29 at 5 22 39 PM" src="https://user-images.githubusercontent.com/114114167/204661380-b5b42c54-03b6-4cd3-b5f0-4d5116464db3.png">
+<img width="377" alt="Screenshot 2022-11-29 at 5 22 39 PM" src="https://i.imgur.com/mgD38IY.png">
 
 
-<img width="1058" alt="Screenshot 2022-11-29 at 5 19 01 PM" src="https://user-images.githubusercontent.com/114114167/204669034-f29af419-3663-4872-bbb9-50be03649c81.png">
+<img width="377" alt="Screenshot 2022-11-29 at 5 19 01 PM" src="https://i.imgur.com/JCabDxI.png">
 
 ![FTrJEx8 (1)](https://user-images.githubusercontent.com/114114167/204669821-8d91ac23-8ebe-495e-8930-f0d9fe0d2b39.png)
