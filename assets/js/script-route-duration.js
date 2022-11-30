@@ -116,7 +116,7 @@ function timeConverter(timeHrs) {
     return minsToMs;
   } else {
     console.log(splitString[1]);
-    return splitString[1] * 1000;
+    return splitString[0] * 60000;
   }
 
 }
